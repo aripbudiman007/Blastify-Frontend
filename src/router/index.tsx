@@ -30,7 +30,7 @@ import { PayInvoicePage }     from '@/pages/payment/PayInvoicePage'
 import { PaymentResultPage }  from '@/pages/payment/PaymentResultPage'
 import { IpWhitelistPage }    from '@/pages/ipwhitelist/IpWhitelistPage'
 import { NotFoundPage }       from '@/pages/NotFoundPage'
-import { LandingPage }        from '@/pages/landing/LandingPage'
+import { RootRoute }          from './RootRoute'
 import { PrivacyPage }        from '@/pages/legal/PrivacyPage'
 import { TermsPage }          from '@/pages/legal/TermsPage'
 import { ApiDocsPage }        from '@/pages/docs/ApiDocsPage'
@@ -52,7 +52,7 @@ const AdminEmailTemplatesPage = lazy(() => import('@/pages/admin/AdminEmailTempl
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <LandingPage />,
+    element: <RootRoute />,
   },
   {
     element: <AuthLayout />,

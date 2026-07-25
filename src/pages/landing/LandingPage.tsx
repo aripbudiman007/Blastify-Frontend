@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Icon } from '@iconify/react'
 import { useQuery } from '@tanstack/react-query'
 import { cn } from '@/lib/utils'
-import { APP_NAME, MESSAGE_TYPE_LABELS } from '@/lib/constants'
+import { APP_NAME, APP_URL, MESSAGE_TYPE_LABELS } from '@/lib/constants'
 import { planApi } from '@/api/plan.api'
 import { integrationApi } from '@/api/integration.api'
 import type { PublicPlan } from '@/types'
@@ -112,21 +112,21 @@ function Navbar() {
 
         {/* CTA */}
         <div className="hidden md:flex items-center gap-2">
-          <Link to="/login"
+          <a href={`${APP_URL}/login`}
             className="text-[13.5px] font-medium px-4 py-2 rounded-lg transition-all duration-200"
             style={{ color: 'rgba(241,245,249,.62)' }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = BR.textDark; (e.currentTarget as HTMLElement).style.background = BR.darkBorder }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'rgba(241,245,249,.62)'; (e.currentTarget as HTMLElement).style.background = 'transparent' }}>
             Masuk
-          </Link>
+          </a>
           {/* Primary CTA — Brand Green, radius 8px per spec */}
-          <Link to="/register"
+          <a href={`${APP_URL}/register`}
             className="text-white text-[13.5px] font-semibold px-5 py-2 rounded-lg transition-all duration-300 hover:-translate-y-px hover:scale-[1.02]"
             style={{ background: BR.green, boxShadow: '0 2px 14px rgba(0,200,83,.38)', borderRadius: 8 }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = BR.teal; (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 22px rgba(0,229,204,.45)' }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = BR.green; (e.currentTarget as HTMLElement).style.boxShadow = '0 2px 14px rgba(0,200,83,.38)' }}>
             Mulai gratis
-          </Link>
+          </a>
         </div>
 
         {/* Mobile burger */}
@@ -149,11 +149,11 @@ function Navbar() {
               </a>
             ))}
             <div className="pt-3 flex flex-col gap-2" style={{ borderTop: `1px solid ${BR.darkBorder}` }}>
-              <Link to="/login" className="block px-3 py-2.5 text-sm rounded-xl" style={{ color: BR.textDarkSub }}>Masuk</Link>
-              <Link to="/register" className="block text-white text-sm font-semibold px-3 py-2.5 text-center"
+              <a href={`${APP_URL}/login`} className="block px-3 py-2.5 text-sm rounded-xl" style={{ color: BR.textDarkSub }}>Masuk</a>
+              <a href={`${APP_URL}/register`} className="block text-white text-sm font-semibold px-3 py-2.5 text-center"
                 style={{ background: BR.green, borderRadius: 8 }}>
                 Mulai gratis
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -362,12 +362,12 @@ function Hero() {
           </p>
 
           <div className="flex flex-wrap items-center gap-5">
-            <Link to="/register"
+            <a href={`${APP_URL}/register`}
               className="inline-flex items-center justify-center gap-2.5 text-white font-bold px-7 py-3.5 text-[15px] rounded-xl transition-all duration-300 hover:-translate-y-0.5"
               style={{ background: BR.green, boxShadow: '0 12px 32px rgba(0,200,83,.32)' }}>
               Mulai Gratis
               <Icon icon="mdi:arrow-right" className="text-base" />
-            </Link>
+            </a>
             <a href="#api" className="px-6 py-3.5 text-[14.5px] font-semibold text-slate-300 hover:text-white transition-colors">
               Lihat Dokumentasi API
             </a>
@@ -467,13 +467,13 @@ function FeaturesSection() {
               Satu dasbor.<br />Semua yang bisnis Anda butuhkan.
             </h2>
           </div>
-          <Link to="/register"
+          <a href={`${APP_URL}/register`}
             className="flex-shrink-0 self-start sm:self-auto text-[13px] font-semibold px-5 py-2.5 rounded-lg transition-all duration-300 hover:-translate-y-0.5"
             style={{ color: BR.green, border: `1.5px solid rgba(0,200,83,.35)`, background: 'transparent' }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = BR.chipBg; (e.currentTarget as HTMLElement).style.borderColor = BR.green }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'transparent'; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(0,200,83,.35)' }}>
             Lihat semua fitur →
-          </Link>
+          </a>
         </div>
 
         {/* ── Asymmetric 12-col bento — NO ICON CIRCLES ── */}
@@ -1425,7 +1425,7 @@ function PricingSection() {
                 ))}
               </ul>
 
-              <Link to="/register"
+              <a href={`${APP_URL}/register`}
                 className={cn('block text-center text-[13px] font-semibold py-2.5 transition-all duration-300', plan.highlight ? 'hover:-translate-y-0.5' : 'hover:opacity-80')}
                 style={plan.highlight
                   ? { background: BR.gBrand, color: '#fff', borderRadius: 8, boxShadow: '0 4px 20px rgba(0,200,83,.4)' }
@@ -1433,7 +1433,7 @@ function PricingSection() {
                 onMouseEnter={e => { if (plan.highlight) { (e.currentTarget as HTMLElement).style.boxShadow = '0 6px 28px rgba(0,200,83,.55)' } }}
                 onMouseLeave={e => { if (plan.highlight) { (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 20px rgba(0,200,83,.4)' } }}>
                 {plan.cta}
-              </Link>
+              </a>
             </div>
           ))}
         </div>
@@ -1588,16 +1588,16 @@ function FinalCta() {
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           {/* Primary CTA — Brand Green #00C853, radius 8px */}
-          <Link to="/register"
+          <a href={`${APP_URL}/register`}
             className="inline-flex items-center justify-center gap-2 text-white font-bold px-8 py-3.5 text-[14px] transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02]"
             style={{ background: BR.green, borderRadius: 8, boxShadow: '0 4px 32px rgba(0,200,83,.45)' }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = BR.teal; (e.currentTarget as HTMLElement).style.boxShadow = '0 8px 48px rgba(0,229,204,.55)' }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = BR.green; (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 32px rgba(0,200,83,.45)' }}>
             Buat akun gratis
             <Icon icon="mdi:arrow-right" className="text-base" />
-          </Link>
+          </a>
           {/* Secondary — ghost, border #00C853 */}
-          <Link to="/login"
+          <a href={`${APP_URL}/login`}
             className="inline-flex items-center justify-center gap-2 font-semibold px-8 py-3.5 text-[14px] transition-all duration-300 hover:-translate-y-0.5"
             style={{ color: BR.green, border: `1.5px solid rgba(0,200,83,.5)`, borderRadius: 8, background: 'transparent' }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = BR.green; (e.currentTarget as HTMLElement).style.background = 'rgba(0,200,83,.08)' }}
