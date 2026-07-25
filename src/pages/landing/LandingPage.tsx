@@ -1603,7 +1603,7 @@ function FinalCta() {
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = BR.green; (e.currentTarget as HTMLElement).style.background = 'rgba(0,200,83,.08)' }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(0,200,83,.5)'; (e.currentTarget as HTMLElement).style.background = 'transparent' }}>
             Sudah punya akun →
-          </Link>
+          </a>
         </div>
       </div>
     </section>
