@@ -41,7 +41,7 @@ function extractVars(...parts: (string | undefined | null)[]): string[] {
 const createSchema = z.object({
   name:             z.string().min(1).max(255),
   slug:             z.string().min(1, 'Slug wajib').regex(/^[a-z0-9-]+$/, 'Hanya huruf kecil, angka, dan tanda hubung'),
-  category:         z.enum(['registration', 'account', 'payment', 'notification'] as const).default('notification'),
+  category:         z.enum(['registration', 'account', 'payment', 'notification'] as const),
   subject:          z.string().min(1, 'Subjek wajib'),
   htmlContent:      z.string().min(1, 'Konten HTML wajib'),
   plainTextContent: z.string().optional(),
@@ -248,7 +248,9 @@ export function AdminEmailTemplatesPage() {
                       <Label>Kategori</Label>
                       <Select
                         value={isEdit ? editForm.watch('category') : createForm.watch('category')}
-                        onValueChange={(v) => (isEdit ? editForm : createForm).setValue('category', v as EmailTemplateCategory)}
+                        onValueChange={(v) => isEdit
+                          ? editForm.setValue('category', v as EmailTemplateCategory)
+                          : createForm.setValue('category', v as EmailTemplateCategory)}
                       >
                         <SelectTrigger><SelectValue /></SelectTrigger>
                         <SelectContent>

@@ -28,6 +28,8 @@ const numberField = (min: number) =>
     z.number({ error: 'Wajib diisi dengan angka' }).int('Harus bilangan bulat').min(min, `Minimal ${min}`),
   )
 
+const MESSAGE_TYPES = ['TEXT', 'IMAGE', 'VIDEO', 'DOCUMENT', 'AUDIO', 'LOCATION', 'CONTACT', 'TEMPLATE', 'LIST', 'BUTTON'] as const
+
 const schema = z.object({
   priceRupiah:          numberField(0),
   maxDevices:           numberField(-1),
@@ -45,12 +47,13 @@ const schema = z.object({
   canIpWhitelist:       z.boolean(),
   canAiReply:           z.boolean(),
   hasWatermark:         z.boolean(),
-  allowedMessageTypes:  z.array(z.string()),
+  allowedMessageTypes:  z.array(z.enum(MESSAGE_TYPES)),
   allowedPlatforms:     z.array(z.string()),
 })
-type FormData = z.infer<typeof schema>
+type FormInput = z.input<typeof schema>
+type FormData  = z.output<typeof schema>
 
-const NUMBER_FIELDS: { key: keyof FormData; label: string }[] = [
+const NUMBER_FIELDS: { key: keyof FormInput; label: string }[] = [
   { key: 'maxDevices',           label: 'Device' },
   { key: 'monthlyMessages',      label: 'Pesan/bulan' },
   { key: 'maxContacts',          label: 'Kontak' },
@@ -60,7 +63,7 @@ const NUMBER_FIELDS: { key: keyof FormData; label: string }[] = [
   { key: 'aiMonthlyReplies',     label: 'Balasan AI/bulan' },
 ]
 
-const FEATURE_FIELDS: { key: keyof FormData; label: string }[] = [
+const FEATURE_FIELDS: { key: keyof FormInput; label: string }[] = [
   { key: 'canAutoReply',      label: 'Auto-Reply' },
   { key: 'canAiReply',        label: 'AI Reply' },
   { key: 'canDeviceRotation', label: 'Device Rotation' },
@@ -70,8 +73,6 @@ const FEATURE_FIELDS: { key: keyof FormData; label: string }[] = [
   { key: 'canIpWhitelist',    label: 'IP Whitelist' },
   { key: 'hasWatermark',      label: 'Watermark' },
 ]
-
-const MESSAGE_TYPES = ['TEXT', 'IMAGE', 'VIDEO', 'DOCUMENT', 'AUDIO', 'LOCATION', 'CONTACT', 'TEMPLATE', 'LIST', 'BUTTON'] as const
 
 const fmt = (n: number | undefined) =>
   n === undefined ? '—' : n === -1 ? '∞' : n.toLocaleString('id-ID')
@@ -107,7 +108,7 @@ export function AdminPlansPage() {
     staleTime: Infinity,
   })
 
-  const { register, handleSubmit, reset, watch, setValue, formState: { errors } } = useForm<FormData>({
+  const { register, handleSubmit, reset, watch, setValue, formState: { errors } } = useForm<FormInput, any, FormData>({
     resolver: zodResolver(schema),
   })
 

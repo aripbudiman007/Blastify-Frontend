@@ -1,5 +1,3 @@
-import type { AxiosError } from 'axios'
-
 export interface ApiError {
   code: string
   message: string
@@ -67,6 +65,6 @@ export function storeRateLimitToLocalStorage(
   localStorage.setItem(`${rateLimitKey}:retrySeconds`, retryAfterSeconds.toString())
 }
 
-export function isAxiosError429(error: any): error is AxiosError {
-  return error.response?.status === 429
+export function isAxiosError429(error: any): boolean {
+  return error?.response?.status === 429
 }
