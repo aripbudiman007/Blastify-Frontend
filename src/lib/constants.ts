@@ -1,5 +1,5 @@
-export const API_URL    = import.meta.env.VITE_API_URL    as string
-export const SOCKET_URL = import.meta.env.VITE_SOCKET_URL as string
+export const API_URL    = (import.meta.env.VITE_API_URL as string)    || 'https://api.blastify.id/api/v1'
+export const SOCKET_URL = (import.meta.env.VITE_SOCKET_URL as string) || 'https://api.blastify.id'
 export const APP_NAME   = (import.meta.env.VITE_APP_NAME as string) || 'Blastify'
 
 // URL tempat aplikasi (login/dashboard) di-hosting — beda domain dari landing page.

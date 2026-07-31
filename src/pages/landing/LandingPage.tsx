@@ -1641,7 +1641,7 @@ function Footer() {
             },
             {
               title: 'Legal',
-              links: [['/privacy', 'Kebijakan Privasi'], ['/terms', 'Syarat Layanan']],
+              links: [['/privacy', 'Kebijakan Privasi'], ['/terms', 'Syarat Layanan'], ['/refund', 'Kebijakan Refund']],
             },
             {
               title: 'Kontak',

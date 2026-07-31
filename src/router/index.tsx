@@ -33,6 +33,7 @@ import { NotFoundPage }       from '@/pages/NotFoundPage'
 import { RootRoute }          from './RootRoute'
 import { PrivacyPage }        from '@/pages/legal/PrivacyPage'
 import { TermsPage }          from '@/pages/legal/TermsPage'
+import { RefundPage }         from '@/pages/legal/RefundPage'
 import { ApiDocsPage }        from '@/pages/docs/ApiDocsPage'
 
 // ─── Admin (lazy loaded for better performance) ──────────────────────────────
@@ -124,6 +125,7 @@ export const router = createBrowserRouter([
   // ─── Legal pages (public, no auth) ──────────────────────────────────────────
   { path: '/privacy', element: <PrivacyPage />  },
   { path: '/terms',   element: <TermsPage />    },
+  { path: '/refund',  element: <RefundPage />   },
   { path: '/docs',    element: <ApiDocsPage />  },
 
   { path: '*', element: <NotFoundPage /> },

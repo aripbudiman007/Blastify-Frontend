@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils'
 const LEGAL_LINKS = [
   { to: '/privacy', label: 'Kebijakan Privasi', icon: 'mdi:shield-lock-outline'   },
   { to: '/terms',   label: 'Syarat Layanan',    icon: 'mdi:file-document-outline' },
+  { to: '/refund',  label: 'Kebijakan Refund',  icon: 'mdi:cash-refund'           },
 ]
 
 function LegalNav() {
